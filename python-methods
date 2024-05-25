@@ -1,0 +1,128 @@
+//favorite method
+
+class Customer:
+    def __init__(self, name, address, phone, email):
+        self.name = name
+        self.address = address
+        self.phone = phone
+        self.email = email
+        self.favorite_shops = []  # Initialize an empty list to store favorite shops
+
+    def add_favorite_shop(self, shop):
+        if shop not in self.favorite_shops:
+            self.favorite_shops.append(shop)
+            print(f"{shop.name} has been added to your favorite shops.")
+        else:
+            print(f"{shop.name} is already in your favorite shops.")
+
+    def remove_favorite_shop(self, shop):
+        if shop in self.favorite_shops:
+            self.favorite_shops.remove(shop)
+            print(f"{shop.name} has been removed from your favorite shops.")
+        else:
+            print(f"{shop.name} is not in your favorite shops.")
+
+    def make_booking(self, shop, date, time):
+        booking = Booking(self, shop, date, time)
+        shop.make_booking(booking)
+
+class Reservation:
+    def __init__(self, reservation_id, date, time, status):
+        self.reservation_id = reservation_id
+        self.date = date
+        self.time = time
+        self.status = status
+        self.confirm_button = Button(text="Confirm")
+        self.cancel_button = Button(text="Cancel")
+        self.activate_reminder_button = Button(text="Activate Reminder")
+
+    def confirm_booking(self):
+        self.status = "Confirmed"
+        print("Booking confirmed.")
+
+    def cancel_booking(self):
+        self.status = "Cancelled"
+        print("Booking cancelled.")
+
+    def activate_reminder(self, reminder):
+        # Implementation to activate reminder
+        pass
+
+class Booking:
+    def __init__(self, customer, shop, date, time):
+        self.customer = customer
+        self.shop = shop
+        self.date = date
+        self.time = time
+
+    def make_booking(self):
+        # Implementation to make booking
+        pass
+
+class Shop:
+    def __init__(self, shop_id, name, address, phone, email):
+        self.shop_id = shop_id
+        self.name = name
+        self.address = address
+        self.phone = phone
+        self.email = email
+        self.show_product_button = Button(text="Show Products")
+        self.add_product_button = Button(text="Add Product")
+        self.calendar_update_button = Button(text="Update Calendar")
+        self.make_booking_button = Button(text="Make Booking")
+        self.add_favorite_button = Button(text="Add to Favorites")
+
+
+    def __init__(self, name):
+        self.name = name
+        self.reservations = []
+        
+    def add_employee(self, employee):
+        self.employees.append(employee)
+        print(f"Employee {employee.name} added to {self.name}")
+
+    def remove_employee(self, employee_id):
+        for employee in self.employees:
+            if employee.employee_id == employee_id:
+                self.employees.remove(employee)
+                print(f"Employee {employee.name} removed from {self.name}")
+                return
+        print(f"Employee with ID {employee_id} not found in {self.name}")
+        
+   def add_product(self, product):
+        self.products.append(product)
+        print(f"Product '{product.name}' added to {self.name}")
+
+    def show_product_page(self):
+        print(f"Displaying product page for shop: {self.name}")
+        pass
+
+    def calendar_update(self, event):
+       self.calendar.append(event)
+        print(f"Calendar updated with event: {event}")
+
+    def receive_reservation(self, reservation):
+        self.reservations.append(reservation)
+        print("Reservation received.")
+
+class Employee:
+    def __init__(self, employee_id, name, mail, phone_number, role):
+        self.employee_id = employee_id
+        self.name = name
+        self.mail = mail
+        self.phone_number = phone_number
+        self.role = role
+
+    def update_availability(self, status):
+        if status.lower() == "available":
+            self.available = True
+        elif status.lower() == "unavailable":
+            self.available = False
+        else:
+            print("Invalid availability status. Please specify 'available' or 'unavailable'.")
+
+
+
+
+
+
